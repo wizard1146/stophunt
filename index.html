@@ -1,0 +1,62 @@
+
+<script src="https://cdn.jsdelivr.net/gh/wizard1146/runeworks@master/runeworks.utilities.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/wizard1146/runeworks@master/runeworks.clock.js"></script>
+<style>
+body {
+  margin: 0px;
+}
+
+#sh-canvas {
+  
+}
+</style>
+
+<canvas id="sh-canvas"></canvas>
+
+<script>
+let body, clock;
+
+let tick = function(data) {
+  runeworks.utilities.raiseEvent( body, 'tick', data )
+}
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  console.log(`henlo fren`)
+  
+  console.log(runeworks)
+  
+  body = document.querySelector(`body`)
+  
+  clock = new runeworks.clock.make( tick )
+  clock.prepare().loop()
+  
+  console.log(clock)
+  
+  let w = window.innerWidth
+  let h = window.innerHeight
+  
+  console.log(w,h)
+  
+  let canvas = document.querySelector('#sh-canvas')
+  
+  canvas.height = h
+  canvas.width  = w
+  canvas.style.height = h + 'px'
+  canvas.style.width  = w + 'px'
+  
+  let context = canvas.getContext('2d')
+  
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+  
+  context.fillStyle = '#00d3ad'
+  context.fillRect(0, 0, context.canvas.width, context.canvas.height)
+  
+  context.strokeStyle = "black"
+  context.fillStyle = "#077077"
+  context.textAlign = "center"
+  context.textBaseline = "middle"
+  context.font = "37px Arial"
+  context.fillText("stop hunt", w/2, h/2 )
+})
+
+</script>
